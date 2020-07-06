@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/w3.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>My Band</title>
+   <style>
+		body {font-family: "Lato", sans-serif}
+		.mySlides {display: none}
+	</style>
+</head>
+
+<body>
+
+
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="new_member.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">New Member</a>
+    <a href="new_member_list.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Member List</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
+    
+     <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+	<a href="new_member.html" class="w3-bar-item w3-button w3-padding-large">New Member</a>
+  <a href="new_member_list.html" class="w3-bar-item w3-button w3-padding-large">Member List</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
+ 
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <!-- Automatic Slideshow Images -->
+  <div class="mySlides w3-display-container w3-center">
+    <img src="img/la.jpg" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>Los Angeles</h3>
+      <p><b>We had the best time playing at Venice Beach!</b></p>   
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="img/ny.jpg" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>New York</h3>
+      <p><b>The atmosphere in New York is lorem ipsum.</b></p>    
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="img/chicago.jpg" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <h3>Chicago</h3>
+      <p><b>Thank you, Chicago - A night we won't forget.</b></p>    
+    </div>
+  </div>
+
+  <!-- Ticket Modal -->
+    <div class="w3-modal-content w3-card-4" style="width:100%;">
+      <header class="w3-container w3-teal w3-center w3-padding-32"> 
+        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>New Member</h2>
+      </header>
+      <div class="w3-container">
+       <input type="hidden" id="id" value="" />
+        <p><label><i class="fa fa-shopping-cart"></i> Name</label></p>
+        <input class="w3-input w3-border" type="text" id="m_name" value="">
+        <p><label><i class="fa fa-user"></i> Age</label></p>
+        <input class="w3-input w3-border" type="text" id="age" value="">
+         <p><label><i class="fa fa-user"></i> Email Address</label></p>
+        <input class="w3-input w3-border" type="text" id="email" value="">
+         <p><label><i class="fa fa-user"></i> Phone Number</label></p>
+        <input class="w3-input w3-border" type="text" id="phone" value="">
+        <button id="update" class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right" type="button">UPDATE <i class="fa fa-pencil-square-o"></i></button>
+        <button id="delete" class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right" type="button">DELETE <i class="fa fa-trash"></i></button>
+      </div>
+    </div>
+
+ 
+  
+<!-- End Page Content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Powered by <a href="default.html" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 4000);    
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+	
+    
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/geturi.js"></script>
+   <script type="text/javascript">
+        $(document).ready(function() {
+            var id = decodeURI(getUrlVars()["id"]);
+            var m_name = decodeURI(getUrlVars()["m_name"]);
+            var age = decodeURI(getUrlVars()["age"]);
+            var email = decodeURI(getUrlVars()["email"]);
+            var phone = decodeURI(getUrlVars()["phone"]);
+            $("#id").val(id);
+            $("#m_name").val(m_name);
+            $("#age").val(age);
+            $("#email").val(email);
+            $("#phone").val(phone);
+            $("#update").click(function() {
+                var id = $("#id").val();
+                var m_name = $("#m_name").val();
+                var age = $("#age").val();
+                var email = $("#email").val();
+                var phone = $("#phone").val();
+                var dataString = "id=" + id + "&m_name=" + m_name + "&age=" + age + "&email=" + email + "&phone=" + phone + "&update=";
+                $.ajax({
+                    type: "POST",
+                    url: "http://www.alicesons.org/demos/phonegap/update.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function() {
+                        $("#update").val('Connecting...');
+                    },
+                    success: function(data) {
+                        if (data == "success") {
+                            alert("Updated");
+                            $("#update").val("Update");
+                        } else if (data == "error") {
+                            alert("error");
+                        }
+                    }
+                });
+
+            });
+            $("#delete").click(function() {
+                var id = $("#id").val();
+                var dataString = "id=" + id + "&delete=";
+                $.ajax({
+                    type: "GET",
+                    url: "http://www.alicesons.org/demos/phonegap/delete.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function() {
+                        $("#delete").val('Connecting...');
+                    },
+                    success: function(data) {
+                        if (data == "success") {
+                            alert("Deleted");
+                            $("#delete").val("Delete");
+                        } else if (data == "error") {
+                            alert("error");
+                        }
+                    }
+                });
+
+            });
+        });
+    </script>
+  
+</body>
+
+</html>
